@@ -19,6 +19,7 @@ import { useColorScheme } from "@/src/hooks/useColorScheme";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import { View } from "react-native";
+import { SessionProvider } from "@/src/context/sessionContext";
 
 SplashScreen.preventAutoHideAsync();
 const queryClient = new QueryClient();
@@ -46,9 +47,11 @@ export default function RootLayout() {
         <GestureHandlerRootView className="flex-1">
           <BottomSheetModalProvider>
             <QueryClientProvider client={queryClient}>
-              <View className="flex-1 bg-white dark:bg-black">
-                <Slot />
-              </View>
+              <SessionProvider>
+                <View className="flex-1 bg-white dark:bg-black">
+                  <Slot />
+                </View>
+              </SessionProvider>
               <StatusBar translucent style={"auto"} />
             </QueryClientProvider>
           </BottomSheetModalProvider>

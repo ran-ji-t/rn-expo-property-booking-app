@@ -178,6 +178,14 @@ const HomeScreen = () => {
               <MapView
                 provider={PROVIDER_GOOGLE}
                 ref={mapRef}
+                initialRegion={region}
+                loadingEnabled={true}
+                loadingIndicatorColor="#666666"
+                loadingBackgroundColor="#eeeeee"
+                moveOnMarkerPress={false}
+                showsUserLocation={true}
+                showsCompass={true}
+                showsPointsOfInterest={false}
                 onLayout={() => {
                   mapRef.current?.animateCamera(
                     {
@@ -189,6 +197,7 @@ const HomeScreen = () => {
                     { duration: 500 }
                   );
                 }}
+                region={region}
                 style={{ width: "100%", height: hp(150) }}
               >
                 <Marker
@@ -196,7 +205,8 @@ const HomeScreen = () => {
                     latitude: region.latitude,
                     longitude: region.longitude,
                   }}
-                />
+                >
+                </Marker>
               </MapView>
               <Text className="absolute ml-2 mt-2 color-rose-700 font-pm">
                 {selectedProperty?.location.address},{" "}

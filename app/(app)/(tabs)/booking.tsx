@@ -1,10 +1,10 @@
-import { View, Text, ActivityIndicator, FlatList } from "react-native";
-import React, { useEffect } from "react";
-import { useBooking } from "@/src/hooks/useBooking";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Booking } from "@/src/types/property";
-import { wp } from "@/src/helpers/utils";
 import BookingItem from "@/src/components/BookingItem";
+import { wp } from "@/src/helpers/utils";
+import { useBooking } from "@/src/hooks/useBooking";
+import { Booking } from "@/src/types/property";
+import React from "react";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const BookingsScreen = () => {
   const { data, error, isLoading } = useBooking();

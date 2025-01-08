@@ -1,37 +1,25 @@
 import { useRouter } from "expo-router";
-import { useAtom } from "jotai";
 import React, { useState } from "react";
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { logMessage } from "@/src/helpers/logger";
-import { setItem, wp } from "@/src/helpers/utils";
-import { login } from "@/src/services/apiHandler";
-import { userAtom } from "@/src/stores/userAtom";
-import { LogLevel } from "@/src/types/utils";
+import { useSession } from "@/src/context/sessionContext";
+import { wp } from "@/src/helpers/utils";
 
 const LoginScreen = () => {
   const [fetching, setFetching] = useState(false);
-  const [_, setUser] = useAtom(userAtom);
   const router = useRouter();
+  const { signIn } = useSession();
 
-  const signIn = async () => {
+  const signInHandler = async () => {
     setFetching(true);
     try {
-      const res = await login();
-      const user = {
-        email: res.email,
-        id: res.id,
-        name: res.name,
-      };
-      setUser(user);
-      setItem(user);
-      router.replace("/(app)/(tabs)");
-    } catch (error) {
-      logMessage(LogLevel.Error, "Unable to perform action");
-    }
+      await signIn();
+      router.replace("/");
+    } catch (error) {}
     setFetching(false);
   };
+
   return (
     <SafeAreaView
       edges={["top"]}
@@ -43,7 +31,9 @@ const LoginScreen = () => {
           <ActivityIndicator color={"#D44638"} size={wp(30)} />
         ) : (
           <TouchableOpacity
-            onPress={() => signIn()}
+            onPress={() => {
+              signInHandler();
+            }}
             className="w-1/2 bg-secondaryLight justify-center items-center h-16 rounded-full"
           >
             <Text className="text-center text-black dark:text-white font-pb text-2xl">
