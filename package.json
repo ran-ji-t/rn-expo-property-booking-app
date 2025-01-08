@@ -11,8 +11,7 @@
     "test": "jest --watchAll",
     "expo:upgrade": "npm i expo@latest && expo install --fix",
     "postinstall": "node ./scripts/postInstall.js",
-    "prebuild": "echo 'y' | expo prebuild --clean",
-    "log": "adb logcat | findstr 'Google Maps Android API'"
+    "prebuild": "echo 'y' | expo prebuild --clean"
   },
   "jest": {
     "preset": "jest-expo"
