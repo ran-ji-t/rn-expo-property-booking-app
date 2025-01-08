@@ -16,7 +16,9 @@ const LoginScreen = () => {
     try {
       await signIn();
       router.replace("/");
-    } catch (error) {}
+    } catch (error) {
+        
+    }
     setFetching(false);
   };
 

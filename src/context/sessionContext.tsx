@@ -47,8 +47,9 @@ export function SessionProvider({ children }: PropsWithChildren) {
       };
       setUser(user);
       setItem(user);
-    } catch (error) {
-      logMessage(LogLevel.Error, "Unable to perform action");
+    } catch (error: any) {
+      logMessage(LogLevel.Error, "Unable to Sign in", error.message);
+      throw error
     }
     setSession("xxx");
   };
@@ -58,7 +59,9 @@ export function SessionProvider({ children }: PropsWithChildren) {
       queryClient.invalidateQueries();
       setUser(undefined);
       setSession(null);
-    } catch (error) {}
+    } catch (error) {
+      logMessage(LogLevel.Error, "Unable to Logout");
+    }
   };
   return (
     <AuthContext.Provider
