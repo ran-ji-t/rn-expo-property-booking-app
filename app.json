@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "Assessment",
+    "slug": "Assessment",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/appIcons/logo.png",
+    "scheme": "assessment",
+    "userInterfaceStyle": "automatic",
+    "androidNavigationBar": {
+      "backgroundColor": "#000000"
+    },
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/appIcons/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.Assessment",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/appIcons/adaptiveIcon.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "com.anonymous.Assessment"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-secure-store",
+        {
+          "configureAndroidBackup": true,
+          "faceIDPermission": "Allow $(PRODUCT_NAME) to access your Face ID biometric data."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
